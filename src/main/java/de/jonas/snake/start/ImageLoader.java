@@ -21,7 +21,7 @@ public final class ImageLoader {
      */
     @SneakyThrows
     public ImageLoader() {
-        TITLE = ImageIO.read(getClass().getResource("/SnakeTitle.jpg"));
+        TITLE = ImageIO.read(getClass().getResource("/snakeTitle.jpg"));
     }
 
 }
