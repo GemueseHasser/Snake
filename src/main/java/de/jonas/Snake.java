@@ -1,5 +1,6 @@
 package de.jonas;
 
+import de.jonas.snake.start.ImageLoader;
 import de.jonas.snake.start.StartGUI;
 
 /**
@@ -13,7 +14,9 @@ public class Snake {
      * @param args .
      */
     public static void main(String[] args) {
-        // open start-frame
+        // load Images for start-screen
+        new ImageLoader();
+        // open start-screen
         new StartGUI();
     }
 

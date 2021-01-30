@@ -28,6 +28,16 @@ public class StartDraw extends JLabel {
         // set background dark-gray
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
+        // draw title-image
+        g.drawImage(
+            ImageLoader.title,
+            23,
+            20,
+            300,
+            200,
+            null
+        );
+
         repaint();
     }
 

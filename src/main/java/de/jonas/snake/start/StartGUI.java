@@ -39,7 +39,7 @@ public class StartGUI extends GUI {
         draw.setVisible(true);
 
         final JButton game = new JButton("Spielen");
-        game.setBounds(23, 200, 300, 50);
+        game.setBounds(23, 280, 300, 50);
         game.setOpaque(true);
         game.setBackground(Color.LIGHT_GRAY);
         game.addMouseListener(new StartMouseListener(game));
@@ -53,7 +53,7 @@ public class StartGUI extends GUI {
         });
 
         final JButton exit = new JButton("Verlassen");
-        exit.setBounds(23, 280, 300, 50);
+        exit.setBounds(23, 350, 300, 50);
         exit.setOpaque(true);
         exit.setBackground(Color.LIGHT_GRAY);
         exit.addMouseListener(new StartMouseListener(exit));
