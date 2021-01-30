@@ -30,7 +30,7 @@ public class StartDraw extends JLabel {
 
         // draw title-image
         g.drawImage(
-            ImageLoader.title,
+            ImageLoader.TITLE,
             23,
             20,
             300,
