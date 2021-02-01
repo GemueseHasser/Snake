@@ -39,6 +39,13 @@ public enum SnakeMovementState {
     @Getter
     private final int index;
 
+    /**
+     * Erzeugt eine neue und vollständig unabhängige Instanz des {@link SnakeMovementState}. Hierüber wird die
+     * Bewegungs-Richtung aller einzelner Körperteile der Schlange geregelt.
+     *
+     * @param index Die Anzahl an Kästchen, die das Körperteil der Schlange gehen muss, um die gewünschte Position zu
+     *              erzielen.
+     */
     SnakeMovementState(
         @Range(from = -15, to = 15) final int index
     ) {
