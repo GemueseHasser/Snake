@@ -22,10 +22,17 @@ public class GameGUI extends GUI {
     public GameGUI() {
         super(WIDTH, HEIGHT, CLOSE_OPERATION, TITLE, false);
 
+        new CalculateSnake();
+
+        SnakeMovementState.setMovementState(SnakeMovementState.TOP);
+
+        CalculateSnake.SNAKE_FIELDS.put((GameDraw.LINES * GameDraw.SQUARES_PER_LINE) / 2 + 1, SnakeMovementState.NONE);
+
         GameDraw draw = new GameDraw();
         draw.setBounds(0, 0, super.getWidth(), super.getHeight());
         draw.setVisible(true);
 
+        super.addKeyListener(new KeyHandler());
         super.add(draw);
         super.openFrame();
     }

@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.border.Border;
 
 import java.awt.Component;
+import java.awt.event.KeyListener;
 
 /**
  * Mit Hilfe dieser Klasse, lässt sich ein einfaches GUI erzeugen.
@@ -26,6 +27,7 @@ public class GUI {
     //</editor-fold>
 
     //<editor-fold desc="CONSTRUCTOR">
+
     /**
      * Erzeugt ein leeres und vollständig unabhängiges {@link GUI Fenster}. Dieses Fenster kann bevor es geöffnet wird,
      * noch bearbeitet werden.
@@ -81,10 +83,20 @@ public class GUI {
 
     /**
      * Setzt den entsprechenden {@link Border Rahmen} um das Fenster.
+     *
      * @param border Der {@link Border Rahmen}.
      */
     public void setBorder(@NotNull final Border border) {
         frame.getRootPane().setBorder(border);
+    }
+
+    /**
+     * Fügt den Entsprechenden {@link KeyListener Tasten-Listener} zu dem Fenster hinzu.
+     *
+     * @param listener Der {@link KeyListener}, der hinzugefügt wird.
+     */
+    public void addKeyListener(@NotNull final KeyListener listener) {
+        frame.addKeyListener(listener);
     }
 
 }

@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.Map;
 
 /**
  * Das Snake-Spiel wird gezeichnet.
@@ -15,10 +16,12 @@ import java.awt.RenderingHints;
 public class GameDraw extends JLabel {
 
     //<editor-fold desc="CONSTANTS">
+
+    //<editor-fold desc="squares">
     /** Die Anzahl an Zeilen, in denen Kästchen gemalt werden sollen. */
-    private static final int LINES = 15;
+    public static final int LINES = 15;
     /** Die Anzahl an Kästchen, die in einer Zeile gemalt werden sollen. */
-    private static final int SQUARES_PER_LINE = 15;
+    public static final int SQUARES_PER_LINE = 15;
     /** Die Größe, die ein jedes Quadrat hat. */
     private static final int SQUARE_SIZE = 30;
     /** Der Abstand von links, bei dem angefangen wird, die Kästchen zu zeichnen. */
@@ -29,6 +32,15 @@ public class GameDraw extends JLabel {
     private static final int[] X = new int[LINES * SQUARES_PER_LINE + 1];
     /** Die Y-Koordinaten, an denen die Kästchen gemalt werden sollen. */
     private static final int[] Y = new int[LINES * SQUARES_PER_LINE + 1];
+    //</editor-fold>
+
+    //<editor-fold desc="apple">
+    /** Die Größe des Apfels. */
+    private static final int APPLE_SIZE = 15;
+    /** Der Abstand von oben und links des Apfels. */
+    private static final int APPLE_MARGIN = 8;
+    //</editor-fold>
+
     //</editor-fold>
 
     /**
@@ -69,6 +81,21 @@ public class GameDraw extends JLabel {
         for (int i = 0; i < X.length; i++) {
             g.drawRect(X[i], Y[i], SQUARE_SIZE, SQUARE_SIZE);
         }
+
+        // draw snake
+        for (final Map.Entry<Integer, SnakeMovementState> snake : CalculateSnake.SNAKE_FIELDS.entrySet()) {
+            g.setColor(Color.GREEN);
+            g.fillRect(X[snake.getKey()], Y[snake.getKey()], SQUARE_SIZE, SQUARE_SIZE);
+        }
+
+        // draw apple
+        g.setColor(Color.RED);
+        g.fillOval(
+            X[CalculateSnake.getApplePosition()] + APPLE_MARGIN,
+            Y[CalculateSnake.getApplePosition()] + APPLE_MARGIN,
+            APPLE_SIZE,
+            APPLE_SIZE
+        );
 
         repaint();
     }
