@@ -1,5 +1,6 @@
 package de.jonas.snake.start;
 
+import lombok.Getter;
 import lombok.SneakyThrows;
 
 import javax.imageio.ImageIO;
@@ -13,7 +14,8 @@ public final class ImageLoader {
 
     //<editor-fold desc="STATIC-FIELDS">
     /** Das Titel-Bild. */
-    static Image TITLE;
+    @Getter
+    private static Image title;
     //</editor-fold>
 
     /**
@@ -21,7 +23,7 @@ public final class ImageLoader {
      */
     @SneakyThrows
     public ImageLoader() {
-        TITLE = ImageIO.read(getClass().getResource("/snakeTitle.jpg"));
+        title = ImageIO.read(getClass().getResource("/snakeTitle.jpg"));
     }
 
 }

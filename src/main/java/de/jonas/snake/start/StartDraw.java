@@ -15,10 +15,11 @@ import java.awt.RenderingHints;
 public class StartDraw extends JLabel {
 
     @Override
+    @SuppressWarnings("checkstyle:MagicNumber")
     public void paintComponent(@NotNull final Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2d = (Graphics2D) g;
+        final Graphics2D g2d = (Graphics2D) g;
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -30,7 +31,7 @@ public class StartDraw extends JLabel {
 
         // draw title-image
         g.drawImage(
-            ImageLoader.TITLE,
+            ImageLoader.getTitle(),
             23,
             20,
             300,

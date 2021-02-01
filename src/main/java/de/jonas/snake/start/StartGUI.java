@@ -31,6 +31,7 @@ public class StartGUI extends GUI {
     /**
      * Erstelle eine neue Instanz des {@link StartGUI Start-Fensters}.
      */
+    @SuppressWarnings("checkstyle:MagicNumber")
     public StartGUI() {
         super(WIDTH, HEIGHT, CLOSE_OPERATION, TITLE, true);
 

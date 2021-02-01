@@ -13,7 +13,7 @@ public class Snake {
      *
      * @param args .
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         // load Images for start-screen
         new ImageLoader();
         // open start-screen
