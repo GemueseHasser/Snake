@@ -28,6 +28,11 @@ public class KeyHandler implements KeyListener {
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 snake.setValue(SnakeMovementState.DOWN);
             }
+            CalculateSnake.LAST_SNAKE_TURN_POSITION.clear();
+            CalculateSnake.LAST_SNAKE_TURN_POSITION.put(
+                snake.getKey(),
+                snake.getValue()
+            );
         }
     }
 
