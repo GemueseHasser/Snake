@@ -59,13 +59,12 @@ public class CalculateSnake {
                                 tail.getKey() + tail.getValue().getIndex(),
                                 lastPosition.getValue()
                             );
-                            TAIL_FIELDS.remove(tail.getKey());
-                            continue;
+                        } else {
+                            TAIL_FIELDS.put(
+                                tail.getKey() + tail.getValue().getIndex(),
+                                tail.getValue()
+                            );
                         }
-                        TAIL_FIELDS.put(
-                            tail.getKey() + tail.getValue().getIndex(),
-                            tail.getValue()
-                        );
                         TAIL_FIELDS.remove(tail.getKey());
                     }
                 }
