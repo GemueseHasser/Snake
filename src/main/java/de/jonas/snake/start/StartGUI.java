@@ -7,8 +7,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Das Start-Fenster, in dem man das Spiel starten kann.
@@ -45,12 +43,9 @@ public class StartGUI extends GUI {
         game.setBackground(Color.LIGHT_GRAY);
         game.addMouseListener(new StartMouseListener(game));
         game.setFocusable(false);
-        game.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent actionEvent) {
-                StartGUI.super.closeFrame();
-                new GameGUI();
-            }
+        game.addActionListener(actionEvent -> {
+            StartGUI.super.closeFrame();
+            new GameGUI();
         });
 
         final JButton exit = new JButton("Verlassen");
@@ -59,12 +54,7 @@ public class StartGUI extends GUI {
         exit.setBackground(Color.LIGHT_GRAY);
         exit.addMouseListener(new StartMouseListener(exit));
         exit.setFocusable(false);
-        exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent actionEvent) {
-                System.exit(0);
-            }
-        });
+        exit.addActionListener(actionEvent -> System.exit(0));
 
         super.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
 

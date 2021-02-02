@@ -83,9 +83,15 @@ public class GameDraw extends JLabel {
         }
 
         // draw snake
-        for (final Map.Entry<Integer, SnakeMovementState> snake : CalculateSnake.SNAKE_FIELDS.entrySet()) {
-            g.setColor(Color.GREEN);
+        for (final Map.Entry<Integer, SnakeMovementState> snake : CalculateSnake.SNAKE_FIELD.entrySet()) {
+            g.setColor(Color.DARK_GRAY);
             g.fillRect(X[snake.getKey()], Y[snake.getKey()], SQUARE_SIZE, SQUARE_SIZE);
+        }
+
+        // draw tail
+        for (final Map.Entry<Integer, SnakeMovementState> tail : CalculateSnake.TAIL_FIELDS.entrySet()) {
+            g.setColor(Color.GREEN);
+            g.fillRect(X[tail.getKey()], Y[tail.getKey()], SQUARE_SIZE, SQUARE_SIZE);
         }
 
         // draw apple

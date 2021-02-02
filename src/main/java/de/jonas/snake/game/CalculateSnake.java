@@ -13,13 +13,15 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class CalculateSnake {
 
-    /** Die einzelnen Körperteile der Schlange und deren Position und Richtung. */
-    public static final HashMap<Integer, SnakeMovementState> SNAKE_FIELDS = new HashMap<>();
-
-    /** Die Zeit in Millisekunden, in der der Berechnungs-timer läuft. */
-    private static final int TIMER_INTERVAL = 500;
+    /** Der Kopf der Schlange und dessen Position und Richtung. */
+    public static final HashMap<Integer, SnakeMovementState> SNAKE_FIELD = new HashMap<>();
+    /** Die einzelnen Körperteile der Schlange. */
+    public static final HashMap<Integer, SnakeMovementState> TAIL_FIELDS = new HashMap<>();
+    /** Die Zeit in Millisekunden, in der der Berechnungs-Timer läuft. */
+    private static final int TIMER_INTERVAL = 250;
     /** Nach wie vielen Timer-Intervallen wird die Position des Apfels neu berechnet. */
-    private static final int APPLE_TELEPORT_INTERVAL = 6;
+    private static final int APPLE_TELEPORT_INTERVAL = 8;
+
 
     /** Die Position des Apfels. */
     @Getter
@@ -35,27 +37,55 @@ public class CalculateSnake {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                checkCollision();
+
+                for (final Map.Entry<Integer, SnakeMovementState> snake : SNAKE_FIELD.entrySet()) {
+                    final int field = snake.getKey();
+                    final SnakeMovementState state = snake.getValue();
+                    SNAKE_FIELD.put(field + state.getIndex(), state);
+                    if (state == SnakeMovementState.NONE) continue;
+                    SNAKE_FIELD.remove(field);
+                }
+
+                for (final Map.Entry<Integer, SnakeMovementState> tail : TAIL_FIELDS.entrySet()) {
+                    TAIL_FIELDS.put(
+                        tail.getKey() + tail.getValue().getIndex(),
+                        tail.getValue()
+                    );
+                    TAIL_FIELDS.remove(tail.getKey());
+                }
+
                 appleCount[0]++;
 
                 if (appleCount[0] == APPLE_TELEPORT_INTERVAL) {
                     appleCount[0] = 0;
                     changeApplePosition();
                 }
-
-                for (final Map.Entry<Integer, SnakeMovementState> snake : SNAKE_FIELDS.entrySet()) {
-                    final int field = snake.getKey();
-                    final SnakeMovementState state = snake.getValue();
-                    SNAKE_FIELDS.put(field + state.getIndex(), state);
-                    if (state == SnakeMovementState.NONE) continue;
-                    SNAKE_FIELDS.remove(field);
-                }
-
             }
         }, 0, TIMER_INTERVAL);
     }
 
     private void changeApplePosition() {
         applePosition = ThreadLocalRandom.current().nextInt(0, GameDraw.LINES * GameDraw.SQUARES_PER_LINE + 1);
+    }
+
+    private void checkCollision() {
+        for (final Map.Entry<Integer, SnakeMovementState> snake : SNAKE_FIELD.entrySet()) {
+            if (snake.getKey() == applePosition) {
+                // collision
+                System.out.println("collision");
+                int headField = snake.getKey();
+                TAIL_FIELDS.put(
+                    headField - (
+                        (TAIL_FIELDS.size() == 0)
+                        ? snake.getValue().getIndex()
+                        : (TAIL_FIELDS.size() + 1) * snake.getValue().getIndex()
+                    ),
+                    snake.getValue()
+                );
+                changeApplePosition();
+            }
+        }
     }
 
 }

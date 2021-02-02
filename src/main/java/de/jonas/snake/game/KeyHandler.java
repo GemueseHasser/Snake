@@ -15,7 +15,7 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(final KeyEvent e) {
-        for (final Map.Entry<Integer, SnakeMovementState> snake : CalculateSnake.SNAKE_FIELDS.entrySet()) {
+        for (final Map.Entry<Integer, SnakeMovementState> snake : CalculateSnake.SNAKE_FIELD.entrySet()) {
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 snake.setValue(SnakeMovementState.LEFT);
             }
